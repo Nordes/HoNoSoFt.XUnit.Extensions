@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnit.HoNoSoFt.Extensions", "XUnit.HoNoSoFt.Extensions\XUnit.HoNoSoFt.Extensions.csproj", "{634B212A-59DA-42C8-98AE-AE267A83B873}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnit.HoNoSoFt.Extensions.Tests", "XUnit.HoNoSoFt.Extensions.Tests\XUnit.HoNoSoFt.Extensions.Tests.csproj", "{B940EEEE-AC77-46E5-98E0-EC15BB766839}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{634B212A-59DA-42C8-98AE-AE267A83B873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{634B212A-59DA-42C8-98AE-AE267A83B873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{634B212A-59DA-42C8-98AE-AE267A83B873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{634B212A-59DA-42C8-98AE-AE267A83B873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B940EEEE-AC77-46E5-98E0-EC15BB766839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B940EEEE-AC77-46E5-98E0-EC15BB766839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B940EEEE-AC77-46E5-98E0-EC15BB766839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B940EEEE-AC77-46E5-98E0-EC15BB766839}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {892C24F0-F613-48AD-BA9F-65450B0E2F13}
+	EndGlobalSection
+EndGlobal
