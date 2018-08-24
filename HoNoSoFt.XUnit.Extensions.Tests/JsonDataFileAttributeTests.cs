@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace XUnit.HoNoSoFt.Extensions.Tests
+namespace HoNoSoFt.XUnit.Extensions.Tests
 {
     public class UnitTest1
     {

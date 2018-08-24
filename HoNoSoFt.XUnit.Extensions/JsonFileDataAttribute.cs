@@ -6,7 +6,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using Xunit.Sdk;
 
-namespace XUnit.HoNoSoFt.Extensions
+namespace HoNoSoFt.XUnit.Extensions
 {
     /// <summary>
     /// Come from:

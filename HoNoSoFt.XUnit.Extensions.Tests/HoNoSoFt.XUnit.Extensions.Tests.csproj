@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\XUnit.HoNoSoFt.Extensions\XUnit.HoNoSoFt.Extensions.csproj" />
+    <ProjectReference Include="..\HoNoSoFt.XUnit.Extensions\HoNoSoFt.XUnit.Extensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
