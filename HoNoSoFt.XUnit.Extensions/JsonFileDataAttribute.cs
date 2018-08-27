@@ -20,16 +20,15 @@ namespace HoNoSoFt.XUnit.Extensions
         /// <inheritdoc />
         public JsonFileDataAttribute(string filePath, params object[] data)
         {
-            _filePath = filePath;
+            _filePath = filePath; // Could also look if this is inline json, but it make no sense.
             _data = data;
         }
 
         /// <inheritdoc />
         public JsonFileDataAttribute(string filePath, Type type, params object[] data)
+            : this(filePath, data)
         {
-            _filePath = filePath;
             _type = type;
-            _data = data;
         }
 
         /// <inheritdoc />
@@ -51,10 +50,12 @@ namespace HoNoSoFt.XUnit.Extensions
             // Load the file
             var fileData = File.ReadAllText(_filePath);
             var result = new List<object>(_data);
-            if (_type != null) { 
+            if (_type != null)
+            {
                 result.Insert(0, new JsonData(fileData, _type));
             }
-            else {
+            else
+            {
                 //whole file is the data
                 //var result = new List<object>(_data);
                 if (type == null)

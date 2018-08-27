@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Runtime.Serialization;
 using Xunit.Abstractions;
 
 namespace HoNoSoFt.XUnit.Extensions
@@ -33,7 +32,6 @@ namespace HoNoSoFt.XUnit.Extensions
         private readonly Type _type;
 
         public object Data { get; private set; }
-        public Sample Data2 { get; private set; }
         public string Original { get; private set; }
 
         public JsonData(string originalJson, Type type)
