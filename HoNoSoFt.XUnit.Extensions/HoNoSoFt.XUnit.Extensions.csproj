@@ -1,7 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Authors>Nordes Menard-Lamarre</Authors>
+    <Company>HoNoSoFt</Company>
+    <Description>Attribute Extensions for XUnit.
+Example: JsonFileData attribute</Description>
+    <Copyright>HoNoSoFt</Copyright>
+    <PackageLicenseUrl>https://github.com/Nordes/HoNoSoFt.XUnit.Extensions/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Nordes/HoNoSoFt.XUnit.Extensions/</PackageProjectUrl>
+    <PackageIconUrl>http://www.honosoft.com/img/logo.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Nordes/HoNoSoFt.XUnit.Extensions/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>XUnit, Test, UnitTest</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

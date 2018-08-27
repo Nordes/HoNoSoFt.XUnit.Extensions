@@ -40,6 +40,7 @@ namespace HoNoSoFt.XUnit.Extensions
             var path = Path.IsPathRooted(_filePath)
                 ? _filePath
                 : Path.GetRelativePath(Directory.GetCurrentDirectory(), _filePath);
+            
             var type = testMethod.GetParameters()[0].ParameterType;
 
             if (!File.Exists(path))
@@ -72,6 +73,22 @@ namespace HoNoSoFt.XUnit.Extensions
             // maybe think of https://stackoverflow.com/questions/17519078/initializing-a-generic-variable-from-a-c-sharp-type-variable...
             // however it's not working well yet.
             return new[] { result.ToArray() };
+        }
+
+        public static string GetRelativePath(string fullPath, string basePath)
+        {
+            // Require trailing backslash for path
+            if (!basePath.EndsWith("\\"))
+                basePath += "\\";
+
+            Uri baseUri = new Uri(basePath);
+            Uri fullUri = new Uri(fullPath);
+
+            Uri relativeUri = baseUri.MakeRelativeUri(fullUri);
+
+            // Uri's use forward slashes so convert back to backward slashes
+            return relativeUri.ToString().Replace("/", "\\");
+
         }
     }
 }

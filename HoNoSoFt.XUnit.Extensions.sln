@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoNoSoFt.XUnit.Extensions", "HoNoSoFt.XUnit.Extensions\HoNoSoFt.XUnit.Extensions.csproj", "{634B212A-59DA-42C8-98AE-AE267A83B873}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HoNoSoFt.XUnit.Extensions", "HoNoSoFt.XUnit.Extensions\HoNoSoFt.XUnit.Extensions.csproj", "{634B212A-59DA-42C8-98AE-AE267A83B873}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoNoSoFt.XUnit.Extensions.Tests", "HoNoSoFt.XUnit.Extensions.Tests\HoNoSoFt.XUnit.Extensions.Tests.csproj", "{B940EEEE-AC77-46E5-98E0-EC15BB766839}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HoNoSoFt.XUnit.Extensions.Tests", "HoNoSoFt.XUnit.Extensions.Tests\HoNoSoFt.XUnit.Extensions.Tests.csproj", "{B940EEEE-AC77-46E5-98E0-EC15BB766839}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
