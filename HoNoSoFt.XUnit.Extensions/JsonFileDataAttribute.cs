@@ -14,12 +14,21 @@ namespace HoNoSoFt.XUnit.Extensions
     public class JsonFileDataAttribute : DataAttribute
     {
         private readonly string _filePath;
+        private readonly Type _type = null;
         private readonly object[] _data;
 
         /// <inheritdoc />
         public JsonFileDataAttribute(string filePath, params object[] data)
         {
             _filePath = filePath;
+            _data = data;
+        }
+
+        /// <inheritdoc />
+        public JsonFileDataAttribute(string filePath, Type type, params object[] data)
+        {
+            _filePath = filePath;
+            _type = type;
             _data = data;
         }
 
@@ -41,17 +50,22 @@ namespace HoNoSoFt.XUnit.Extensions
 
             // Load the file
             var fileData = File.ReadAllText(_filePath);
-
-            //whole file is the data
             var result = new List<object>(_data);
-            if (type == null)
-            {
-                // This will return a JObject.
-                result.Insert(0, JsonConvert.DeserializeObject<object>(fileData));
+            if (_type != null) { 
+                result.Insert(0, new JsonData(fileData, _type));
             }
-            else
-            {
-                result.Insert(0, JsonConvert.DeserializeObject(fileData, type));
+            else {
+                //whole file is the data
+                //var result = new List<object>(_data);
+                if (type == null)
+                {
+                    // This will return a JObject.
+                    result.Insert(0, JsonConvert.DeserializeObject<object>(fileData));
+                }
+                else
+                {
+                    result.Insert(0, JsonConvert.DeserializeObject(fileData, type));
+                }
             }
 
             // maybe think of https://stackoverflow.com/questions/17519078/initializing-a-generic-variable-from-a-c-sharp-type-variable...

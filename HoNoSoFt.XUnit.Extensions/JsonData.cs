@@ -6,7 +6,6 @@ using Xunit.Abstractions;
 namespace HoNoSoFt.XUnit.Extensions
 {
     public class JsonData<T> : IXunitSerializable
-        where T : ISerializable
     {
         public T Data { get; private set; }
         public string Original { get; private set; }
@@ -34,6 +33,7 @@ namespace HoNoSoFt.XUnit.Extensions
         private readonly Type _type;
 
         public object Data { get; private set; }
+        public Sample Data2 { get; private set; }
         public string Original { get; private set; }
 
         public JsonData(string originalJson, Type type)
@@ -45,7 +45,6 @@ namespace HoNoSoFt.XUnit.Extensions
 
         public void Deserialize(IXunitSerializationInfo info)
         {
-            //info.AddValue("ElementType", typeof(T));
             Original = info.GetValue<string>("data");
             Data = JsonConvert.DeserializeObject(Original, _type);
         }
