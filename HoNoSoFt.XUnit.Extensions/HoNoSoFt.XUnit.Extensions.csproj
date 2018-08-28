@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>true</IsPackable>
     <Authors>Nordes Menard-Lamarre</Authors>
     <Company>HoNoSoFt</Company>
     <Description>Attribute Extensions for XUnit.
@@ -14,7 +15,7 @@ Example: JsonFileData attribute</Description>
     <RepositoryUrl>https://github.com/Nordes/HoNoSoFt.XUnit.Extensions/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>XUnit, Test, UnitTest</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
