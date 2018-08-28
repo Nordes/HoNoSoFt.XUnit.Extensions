@@ -6,14 +6,14 @@ namespace HoNoSoFt.XUnit.Extensions.Tests
     {
         [Theory]
         [JsonFileData("./assets/sample.json")]
-        public void JsonFileAttribute(Sample mySample)
+        public void JsonFileDataAttribute(SampleFakeObject mySample)
         {
             Assert.Equal("data", mySample.SampleProp);
         }
 
         [Theory]
         [JsonFileData("./assets/sample.json", "data")]
-        public void JsonFileAttribute_WhenMultipleParameter_ExpectExtraParametersToDisplay(Sample mySample, string expectedResult)
+        public void JsonFileDataAttribute_WhenMultipleParameter_ExpectExtraParametersToDisplay(SampleFakeObject mySample, string expectedResult)
         {
             Assert.Equal(expectedResult, mySample.SampleProp);
         }
@@ -26,7 +26,7 @@ namespace HoNoSoFt.XUnit.Extensions.Tests
         [Theory]
         [JsonFileData("./assets/sample.json", "data")]
         [JsonFileData("./assets/sample2.json", "data2")]
-        public void JsonFileAttribute_WhenAttributeMultiple_ExpectProperDiscoveryButNotVisibleInTestExplorer(Sample mySample, string expectedResult)
+        public void JsonFileDataAttribute_WhenAttributeMultiple_ExpectProperDiscoveryButNotVisibleInTestExplorer(SampleFakeObject mySample, string expectedResult)
         {
             Assert.Equal(expectedResult, mySample.SampleProp);
         }
@@ -37,16 +37,16 @@ namespace HoNoSoFt.XUnit.Extensions.Tests
         /// <param name="mySample">My sample.</param>
         /// <param name="expectedResult">The expected result.</param>
         [Theory]
-        [JsonFileData("./assets/sample.json", typeof(Sample), "data")]
-        [JsonFileData("./assets/sample2.json", typeof(Sample), "data2")]
-        public void JsonFileAttribute_WhenAttributeMultiple_ExpectVisibleInTestExplorer(JsonData mySample, string expectedResult)
+        [JsonFileData("./assets/sample.json", typeof(SampleFakeObject), "data")]
+        [JsonFileData("./assets/sample2.json", typeof(SampleFakeObject), "data2")]
+        public void JsonFileDataAttribute_WhenAttributeMultiple_ExpectVisibleInTestExplorer(JsonData mySample, string expectedResult)
         {
-            Assert.Equal(typeof(Sample), mySample.Data.GetType());
-            Assert.Equal(expectedResult, (mySample.Data as Sample).SampleProp);
+            Assert.Equal(typeof(SampleFakeObject), mySample.Data.GetType());
+            Assert.Equal(expectedResult, (mySample.Data as SampleFakeObject).SampleProp);
         }
     }
 
-    public class Sample
+    public class SampleFakeObject
     {
         public string SampleProp { get; set; }
     }
