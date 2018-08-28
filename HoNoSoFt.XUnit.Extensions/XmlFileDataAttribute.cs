@@ -1,31 +1,33 @@
-﻿using System;
+﻿using HoNoSoFt.XUnit.Extensions.Utilities;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Newtonsoft.Json;
+using System.Text;
+using System.Xml.Serialization;
 using Xunit.Sdk;
 
 namespace HoNoSoFt.XUnit.Extensions
 {
     /// <summary>
-    /// Usage of the JsonFileData attribute gives the opportunity to load json data
-    /// in your tests.
+    /// Usage of the XmlFileData attribute gives the opportunity to load xml data
+    /// in your tests without polluting your code.
     /// </summary>
-    public class JsonFileDataAttribute : DataAttribute
+    public class XmlFileDataAttribute : DataAttribute
     {
         private readonly string _filePath;
         private readonly Type _type = null;
         private readonly object[] _data;
 
         /// <inheritdoc />
-        public JsonFileDataAttribute(string filePath, params object[] data)
+        public XmlFileDataAttribute(string filePath, params object[] data)
         {
             _filePath = filePath; // Could also look if this is inline json, but it make no sense.
             _data = data;
         }
 
         /// <inheritdoc />
-        public JsonFileDataAttribute(string filePath, Type type, params object[] data)
+        public XmlFileDataAttribute(string filePath, Type type, params object[] data)
             : this(filePath, data)
         {
             _type = type;
@@ -51,27 +53,18 @@ namespace HoNoSoFt.XUnit.Extensions
             }
 
             // Load the file
-            var fileData = File.ReadAllText(path);
+            var fileContent = File.ReadAllText(path);
+
             var result = new List<object>(_data);
             if (_type != null)
             {
-                result.Insert(0, new JsonData(fileData, _type));
+                result.Insert(0, new XmlData(fileContent, _type));
             }
             else
             {
-                if (type == null)
-                {
-                    // This will return a JObject.
-                    result.Insert(0, JsonConvert.DeserializeObject<object>(fileData));
-                }
-                else
-                {
-                    result.Insert(0, JsonConvert.DeserializeObject(fileData, type));
-                }
+                result.Insert(0, XmlUtility.DeserializeXml(fileContent, type ?? typeof(object)));
             }
 
-            // maybe think of https://stackoverflow.com/questions/17519078/initializing-a-generic-variable-from-a-c-sharp-type-variable...
-            // however it's not working well yet.
             return new[] { result.ToArray() };
         }
     }
