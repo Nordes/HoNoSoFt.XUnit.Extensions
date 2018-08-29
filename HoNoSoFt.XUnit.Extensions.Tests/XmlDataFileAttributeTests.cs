@@ -3,18 +3,18 @@ using Xunit;
 
 namespace HoNoSoFt.XUnit.Extensions.Tests
 {
-    public partial class JsonDataFileAttributeTests
+    public class XmlDataFileAttributeTests
     {
         [Theory]
-        [JsonFileData("./assets/sample.json")]
-        public void JsonFileData_Simple(SampleFakeObject mySample)
+        [XmlFileData("./assets/sample.xml")]
+        public void XmlFileDataAttribute(SampleFakeObject mySample)
         {
             Assert.Equal("data", mySample.SampleProp);
         }
 
         [Theory]
-        [JsonFileData("./assets/sample.json", "data")]
-        public void JsonFileData_WhenMultipleParameter_ExpectExtraParametersToDisplay(SampleFakeObject mySample, string expectedResult)
+        [XmlFileData("./assets/sample.xml", "data")]
+        public void XmlFileData_WhenMultipleParameter_ExpectExtraParametersToDisplay(SampleFakeObject mySample, string expectedResult)
         {
             Assert.Equal(expectedResult, mySample.SampleProp);
         }
@@ -25,22 +25,22 @@ namespace HoNoSoFt.XUnit.Extensions.Tests
         /// <param name="mySample">My sample.</param>
         /// <param name="expectedResult">The expected result.</param>
         [Theory]
-        [JsonFileData("./assets/sample.json", "data")]
-        [JsonFileData("./assets/sample2.json", "data2")]
-        public void JsonFileData_WhenMultipleNotTyped_ExpectOneGlobalInTestExplorer(SampleFakeObject mySample, string expectedResult)
+        [XmlFileData("./assets/sample.xml", "data")]
+        [XmlFileData("./assets/sample2.xml", "data2")]
+        public void XmlFileData_WhenMultipleNotTyped_ExpectOneGlobalInTestExplorer(SampleFakeObject mySample, string expectedResult)
         {
             Assert.Equal(expectedResult, mySample.SampleProp);
         }
 
         /// <summary>
-        /// Jsons the file attribute when attribute multiple expect visible in test explorer.
+        /// Xmls the file attribute when attribute multiple expect visible in test explorer.
         /// </summary>
         /// <param name="mySample">My sample.</param>
         /// <param name="expectedResult">The expected result.</param>
         [Theory]
-        [JsonFileData("./assets/sample.json", typeof(SampleFakeObject), "data")]
-        [JsonFileData("./assets/sample2.json", typeof(SampleFakeObject), "data2")]
-        public void JsonFileData_WhenMultipleNotTyped_ExpectAllVisibleInTestExplorer(JsonData mySample, string expectedResult)
+        [XmlFileData("./assets/sample.xml", typeof(SampleFakeObject), "data")]
+        [XmlFileData("./assets/sample2.xml", typeof(SampleFakeObject), "data2")]
+        public void XmlFileData_WhenMultipleNotTyped_ExpectAllVisibleInTestExplorer(XmlData mySample, string expectedResult)
         {
             Assert.Equal(typeof(SampleFakeObject), mySample.Data.GetType());
             Assert.Equal(expectedResult, (mySample.Data as SampleFakeObject)?.SampleProp);

@@ -1,33 +1,15 @@
 ﻿using HoNoSoFt.XUnit.Extensions.Utilities;
-using Newtonsoft.Json;
 using System;
-using System.IO;
-using System.Text;
-using System.Xml.Serialization;
 using Xunit.Abstractions;
 
 namespace HoNoSoFt.XUnit.Extensions
 {
-    public class XmlData<T> : IXunitSerializable
+    public class XmlData<T> : XmlData
     {
-        public T Data { get; private set; }
-        public string Original { get; private set; }
+        public new T Data { get; private set; }
 
-        public XmlData(string content)
+        public XmlData(string content) : base(content, typeof(T))
         {
-            Data = XmlUtility.DeserializeXml<T>(content);
-            Original = content;
-        }
-        
-        public void Deserialize(IXunitSerializationInfo info)
-        {
-            Original = info.GetValue<string>("data");
-            Data = XmlUtility.DeserializeXml<T>(Original);
-        }
-
-        public void Serialize(IXunitSerializationInfo info)
-        {
-            info.AddValue("data", Original, typeof(T));
         }
     }
 
@@ -47,14 +29,13 @@ namespace HoNoSoFt.XUnit.Extensions
 
         public void Deserialize(IXunitSerializationInfo info)
         {
-            Original = info.GetValue<string>("data");
+            Original = info.GetValue<string>("rawJson");
             Data = XmlUtility.DeserializeXml(Original, _type);
         }
 
         public void Serialize(IXunitSerializationInfo info)
         {
-            //info.AddValue("type", _type); // <= Should normally be done.
-            info.AddValue("data", Original, _type);
+            info.AddValue("rawJson", Original, typeof(string));
         }
     }
 }

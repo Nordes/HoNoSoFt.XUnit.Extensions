@@ -13,12 +13,5 @@ namespace HoNoSoFt.XUnit.Extensions.Utilities
             var serializer = new XmlSerializer(type);
             return serializer.Deserialize(ms);
         }
-
-        public static T DeserializeXml<T>(string content)
-        {
-            var ms = new MemoryStream(Encoding.UTF8.GetBytes(content));
-            var serializer = new XmlSerializer(typeof(T));
-            return (T) serializer.Deserialize(ms);
-        }
     }
 }

@@ -4,26 +4,12 @@ using Xunit.Abstractions;
 
 namespace HoNoSoFt.XUnit.Extensions
 {
-    public class JsonData<T> : IXunitSerializable
+    public class JsonData<T> : JsonData
     {
-        public T Data { get; private set; }
-        public string Original { get; private set; }
+        public new T Data { get; private set; }
 
-        public JsonData(string originalJson)
+        public JsonData(string originalJson) : base(originalJson, typeof(T))
         {
-            Data = JsonConvert.DeserializeObject<T>(originalJson);
-            Original = originalJson;
-        }
-
-        public void Deserialize(IXunitSerializationInfo info)
-        {
-            Original = info.GetValue<string>("data");
-            Data = JsonConvert.DeserializeObject<T>(Original);
-        }
-
-        public void Serialize(IXunitSerializationInfo info)
-        {
-            info.AddValue("data", Original, typeof(T));
         }
     }
 
@@ -43,14 +29,13 @@ namespace HoNoSoFt.XUnit.Extensions
 
         public void Deserialize(IXunitSerializationInfo info)
         {
-            Original = info.GetValue<string>("data");
+            Original = info.GetValue<string>("rawJson");
             Data = JsonConvert.DeserializeObject(Original, _type);
         }
 
         public void Serialize(IXunitSerializationInfo info)
         {
-            info.AddValue("data", Original, _type);
+            info.AddValue("rawJson", Original);
         }
     }
-
 }
