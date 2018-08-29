@@ -1,5 +1,4 @@
-![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg) 
-![NuGet](https://img.shields.io/nuget/v/HoNoSoFt.XUnit.Extensions.svg) [![Build status](https://ci.appveyor.com/api/projects/status/oxhhrmmf711syrkv?svg=true)](https://ci.appveyor.com/project/Nordes/honosoft-xunit-extensions)
+[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/Nordes/HoNoSoFt.XUnit.Extensions/blob/master/LICENSE) [![Build status](https://ci.appveyor.com/api/projects/status/oxhhrmmf711syrkv?svg=true)](https://ci.appveyor.com/project/Nordes/honosoft-xunit-extensions) [![NuGet](https://img.shields.io/nuget/v/HoNoSoFt.XUnit.Extensions.svg)](https://www.nuget.org/packages/HoNoSoFt.XUnit.Extensions) [![NuGet](https://img.shields.io/nuget/dt/HoNoSoFt.XUnit.Extensions.svg)](https://www.nuget.org/packages/HoNoSoFt.XUnit.Extensions)
 
 
 # HoNoSoFt.XUnit.Extensions
