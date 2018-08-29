@@ -1,3 +1,7 @@
+![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg) 
+![NuGet](https://img.shields.io/nuget/v/HoNoSoFt.XUnit.Extensions.svg) [![Build status](https://ci.appveyor.com/api/projects/status/oxhhrmmf711syrkv?svg=true)](https://ci.appveyor.com/project/Nordes/honosoft-xunit-extensions)
+
+
 # HoNoSoFt.XUnit.Extensions
 XUnit extensions in order to have new attributes.
 
