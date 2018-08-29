@@ -5,9 +5,10 @@
     <IsPackable>true</IsPackable>
     <Authors>Nordes Menard-Lamarre</Authors>
     <Company>HoNoSoFt</Company>
-    <Description>Attribute Extensions for XUnit.
+    <Description>XUnit extensions in order to have new attributes. The attributes depending how you use them can be fully discoverable or more simple and not fully displayed in your test explorer.
 
-Example: JsonFileData attribute</Description>
+- Theory + JsonFileData: Load the JSON file into a typed object
+- Theory + XmlFileData: Load the XML file into a typed object</Description>
     <Copyright>HoNoSoFt</Copyright>
     <PackageLicenseUrl>https://github.com/Nordes/HoNoSoFt.XUnit.Extensions/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Nordes/HoNoSoFt.XUnit.Extensions/</PackageProjectUrl>
