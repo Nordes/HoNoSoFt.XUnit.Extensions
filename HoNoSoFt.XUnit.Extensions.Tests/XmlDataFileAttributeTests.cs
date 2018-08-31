@@ -1,4 +1,6 @@
 using HoNoSoFt.XUnit.Extensions.Tests.assets;
+using System.IO;
+using System.Linq;
 using Xunit;
 
 namespace HoNoSoFt.XUnit.Extensions.Tests
@@ -10,6 +12,19 @@ namespace HoNoSoFt.XUnit.Extensions.Tests
         public void XmlFileDataAttribute(SampleFakeObject mySample)
         {
             Assert.Equal("data", mySample.SampleProp);
+        }
+
+        [Fact]
+        public void XmlFileData_XmlFileNotExists()
+        {
+            var wrongPath = "./path/not_exists.xml";
+            var expectedErrorMessage = $"Could not find the XML file located at: {Directory.GetCurrentDirectory()}/{wrongPath}";
+            var currentMethod = typeof(XmlDataFileAttributeTests).GetMethods().First(m => m.Name == nameof(XmlFileData_XmlFileNotExists));
+
+            var test = new XmlFileDataAttribute(wrongPath);
+
+            var exception = Assert.Throws<FileNotFoundException>(() => test.GetData(currentMethod));
+            Assert.Equal(expectedErrorMessage, exception.Message);
         }
 
         [Theory]

@@ -20,7 +20,7 @@ namespace HoNoSoFt.XUnit.Extensions
         /// <inheritdoc />
         public JsonFileDataAttribute(string filePath, params object[] data)
         {
-            _filePath = filePath; // Could also look if this is inline json, but it make no sense.
+            _filePath = filePath; // Could also look if this is inline json.
             _data = data;
         }
 
@@ -35,23 +35,24 @@ namespace HoNoSoFt.XUnit.Extensions
         public override IEnumerable<object[]> GetData(MethodInfo testMethod)
         {
             if (testMethod == null) { throw new ArgumentNullException(nameof(testMethod)); }
+            string fileData = null;
 
-            // Get the absolute path to the JSON file
-            var path = Path.IsPathRooted(_filePath)
-                ? _filePath
-                : Directory.GetCurrentDirectory() + "/" + _filePath;
-            // Original code (Core 2.1, can't work in Standard2.0) :(
-            //: Path.GetRelativePath(Directory.GetCurrentDirectory(), _filePath);
-
-            var type = testMethod.GetParameters()[0].ParameterType;
-
-            if (!File.Exists(path))
+            if (_filePath.Trim().StartsWith("{"))
             {
-                throw new ArgumentException($"Could not find file at path: {path}");
+                fileData = _filePath; // Apparently it's json, not a path.
+            }
+            else
+            {
+                // Get the absolute path to the JSON file
+                var path = Path.IsPathRooted(_filePath)
+                    ? _filePath
+                    : Directory.GetCurrentDirectory() + "/" + _filePath;
+                // Original code (Core 2.1, can't work in Standard2.0, maybe when 2.1 arrives) :(
+                //: Path.GetRelativePath(Directory.GetCurrentDirectory(), _filePath);
+
+                fileData = LoadFile(path);
             }
 
-            // Load the file
-            var fileData = File.ReadAllText(path);
             var result = new List<object>(_data);
             if (_type != null)
             {
@@ -59,20 +60,25 @@ namespace HoNoSoFt.XUnit.Extensions
             }
             else
             {
-                if (type == null)
-                {
-                    // This will return a JObject.
-                    result.Insert(0, JsonConvert.DeserializeObject<object>(fileData));
-                }
-                else
-                {
-                    result.Insert(0, JsonConvert.DeserializeObject(fileData, type));
-                }
+                var type = testMethod.GetParameters()[0].ParameterType;
+                result.Insert(0, (type == null)
+                    ? JsonConvert.DeserializeObject<object>(fileData) // This will return a JObject.
+                    : JsonConvert.DeserializeObject(fileData, type));
             }
 
-            // maybe think of https://stackoverflow.com/questions/17519078/initializing-a-generic-variable-from-a-c-sharp-type-variable...
-            // however it's not working well yet.
             return new[] { result.ToArray() };
+        }
+
+        private static string LoadFile(string path)
+        {
+            if (!File.Exists(path))
+            {
+                // Maybe we should return null, and then create an empty argument when not found.
+                throw new FileNotFoundException($"Could not find the JSON file located at: {path}");
+            }
+
+            var fileData = File.ReadAllText(path);
+            return fileData;
         }
     }
 }

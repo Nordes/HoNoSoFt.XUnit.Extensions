@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Xml.Serialization;
 using Xunit.Sdk;
 
 namespace HoNoSoFt.XUnit.Extensions
@@ -38,34 +36,39 @@ namespace HoNoSoFt.XUnit.Extensions
         {
             if (testMethod == null) { throw new ArgumentNullException(nameof(testMethod)); }
 
-            // Get the absolute path to the JSON file
+            // Get the absolute path to the XML file
             var path = Path.IsPathRooted(_filePath)
                 ? _filePath
                 : Directory.GetCurrentDirectory() + "/" + _filePath;
             // Original code (Core 2.1, can't work in Standard2.0) :(
             //: Path.GetRelativePath(Directory.GetCurrentDirectory(), _filePath);
 
-            var type = testMethod.GetParameters()[0].ParameterType;
-
-            if (!File.Exists(path))
-            {
-                throw new ArgumentException($"Could not find file at path: {path}");
-            }
-
-            // Load the file
-            var fileContent = File.ReadAllText(path);
-
+            var fileContent = LoadFile(path);
             var result = new List<object>(_data);
+
             if (_type != null)
             {
                 result.Insert(0, new XmlData(fileContent, _type));
             }
             else
             {
+                var type = testMethod.GetParameters()[0].ParameterType;
                 result.Insert(0, XmlUtility.DeserializeXml(fileContent, type ?? typeof(object)));
             }
 
             return new[] { result.ToArray() };
+        }
+
+        private static string LoadFile(string path)
+        {
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException($"Could not find the XML file located at: {path}");
+            }
+
+            // Load the file
+            var fileContent = File.ReadAllText(path);
+            return fileContent;
         }
     }
 }

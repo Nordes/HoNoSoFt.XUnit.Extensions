@@ -35,6 +35,8 @@ public class Sample
 ### Discoverable in test explorer version
 This will display as multiple global tests (one per JsonFileData), if ran in command line, all tests will be counted properly.
 
+Also, it's important to note that even if the serialization happens, we still keep the original data available in the attribute `Original`. For example `mySpecialJson.Original` will contains the raw file content. 
+
 ```csharp
 public class MyTests {
 
@@ -53,3 +55,15 @@ public class Sample
     public string SampleProp { get; set; }
 }
 ```
+
+## Attribute XmlFileData
+
+This attribute works the same way as the Json attribute.
+
+## Contributor(s)
+
+At the moment, no specific contributor except the author @Nordes ;).
+
+## License
+
+MIT (Enjoy)

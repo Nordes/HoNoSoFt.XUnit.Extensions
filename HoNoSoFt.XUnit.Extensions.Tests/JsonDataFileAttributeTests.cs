@@ -1,4 +1,7 @@
 using HoNoSoFt.XUnit.Extensions.Tests.assets;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using Xunit;
 
 namespace HoNoSoFt.XUnit.Extensions.Tests
@@ -8,6 +11,26 @@ namespace HoNoSoFt.XUnit.Extensions.Tests
         [Theory]
         [JsonFileData("./assets/sample.json")]
         public void JsonFileData_Simple(SampleFakeObject mySample)
+        {
+            Assert.Equal("data", mySample.SampleProp);
+        }
+
+        [Fact]
+        public void JsonFileData_JsonFileNotExists()
+        {
+            var wrongPath = "./path/not_exists.json";
+            var expectedErrorMessage = $"Could not find the JSON file located at: {Directory.GetCurrentDirectory()}/{wrongPath}";
+            var currentMethod = typeof(JsonDataFileAttributeTests).GetMethods().First(m=> m.Name == nameof(JsonFileData_JsonFileNotExists));
+
+            var test = new JsonFileDataAttribute(wrongPath);
+
+            var exception = Assert.Throws<FileNotFoundException>(() => test.GetData(currentMethod));
+            Assert.Equal(expectedErrorMessage, exception.Message);
+        }
+
+        [Theory]
+        [JsonFileData("{\"sampleProp\": \"data\"}")]
+        public void JsonFileData_SimpleFromJsonString(SampleFakeObject mySample)
         {
             Assert.Equal("data", mySample.SampleProp);
         }
@@ -40,6 +63,7 @@ namespace HoNoSoFt.XUnit.Extensions.Tests
         [Theory]
         [JsonFileData("./assets/sample.json", typeof(SampleFakeObject), "data")]
         [JsonFileData("./assets/sample2.json", typeof(SampleFakeObject), "data2")]
+        [JsonFileData("{\"sampleProp\": \"data3\"}", typeof(SampleFakeObject), "data3")]
         public void JsonFileData_WhenMultipleNotTyped_ExpectAllVisibleInTestExplorer(JsonData mySample, string expectedResult)
         {
             Assert.Equal(typeof(SampleFakeObject), mySample.Data.GetType());
