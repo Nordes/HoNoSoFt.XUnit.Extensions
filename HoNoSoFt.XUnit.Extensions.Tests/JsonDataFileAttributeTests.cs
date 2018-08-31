@@ -1,7 +1,6 @@
 using HoNoSoFt.XUnit.Extensions.Tests.assets;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Xunit;
 
 namespace HoNoSoFt.XUnit.Extensions.Tests

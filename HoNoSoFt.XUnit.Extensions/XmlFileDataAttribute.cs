@@ -11,6 +11,9 @@ namespace HoNoSoFt.XUnit.Extensions
     /// Usage of the XmlFileData attribute gives the opportunity to load xml data
     /// in your tests without polluting your code.
     /// </summary>
+    [CLSCompliant(false)]
+    [DataDiscoverer("Xunit.Sdk.DataDiscoverer", "xunit.core")]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class XmlFileDataAttribute : DataAttribute
     {
         private readonly string _filePath;

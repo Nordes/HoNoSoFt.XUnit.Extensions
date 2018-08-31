@@ -11,6 +11,9 @@ namespace HoNoSoFt.XUnit.Extensions
     /// Usage of the JsonFileData attribute gives the opportunity to load json data
     /// in your tests.
     /// </summary>
+    [CLSCompliant(false)]
+    [DataDiscoverer("Xunit.Sdk.DataDiscoverer", "xunit.core")]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class JsonFileDataAttribute : DataAttribute
     {
         private readonly string _filePath;
