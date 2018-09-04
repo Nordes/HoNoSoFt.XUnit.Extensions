@@ -4,6 +4,15 @@
 # HoNoSoFt.XUnit.Extensions
 XUnit extensions in order to have new attributes.
 
+## Available attributes
+
+| Name | Short Description |
+|------|-------------------|
+| `FileData` | Read the content as is as `string` |
+| `JsonFileData` | Read the content and try to cast to the desired object (see next section) |
+| `XmlFileData` | Read the content and try to cast to the desired object (Same as `JsonFileData`) |
+| `BinaryFileData` | Read the content and send the content as `byte[]` |
+
 ## Attribute JsonFileData
 This attribute is in order to use Json file. This attribute can be used in two different way.
 

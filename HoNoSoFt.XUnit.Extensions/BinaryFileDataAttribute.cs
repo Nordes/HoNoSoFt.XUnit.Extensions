@@ -13,13 +13,13 @@ namespace HoNoSoFt.XUnit.Extensions
     [CLSCompliant(false)]
     [DataDiscoverer("Xunit.Sdk.DataDiscoverer", "xunit.core")]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    public class BinaryDataAttribute : DataAttribute
+    public class BinaryFileDataAttribute : DataAttribute
     {
         private readonly object[] _data;
         private string _filePath;
 
         /// <inheritdoc />
-        public BinaryDataAttribute(string filePath, params object[] data)
+        public BinaryFileDataAttribute(string filePath, params object[] data)
         {
             _filePath = filePath;
             _data = data;

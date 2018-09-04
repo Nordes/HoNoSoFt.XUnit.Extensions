@@ -5,10 +5,10 @@ using Xunit;
 
 namespace HoNoSoFt.XUnit.Extensions.Tests
 {
-    public class BinaryDataAttributeTests
+    public class BinaryFileDataAttributeTests
     {
         [Theory]
-        [BinaryData("./assets/sample.bin")]
+        [BinaryFileData("./assets/sample.bin")]
         public void FileData_Base(byte[] sampleContent)
         {
             Assert.NotNull(sampleContent);
@@ -28,7 +28,7 @@ namespace HoNoSoFt.XUnit.Extensions.Tests
         }
 
         [Theory]
-        [BinaryData("./assets/sample.bin", "HELLO WORLD")]
+        [BinaryFileData("./assets/sample.bin", "HELLO WORLD")]
         public void FileData_BaseUsingExtraParams(byte[] sampleContent, string expected)
         {
             Assert.NotNull(sampleContent);
