@@ -34,6 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="assets\sample.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\sample2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
