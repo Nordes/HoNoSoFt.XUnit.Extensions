@@ -23,7 +23,7 @@ namespace HoNoSoFt.XUnit.Extensions
         /// <inheritdoc />
         public XmlFileDataAttribute(string filePath, params object[] data)
         {
-            _filePath = filePath; // Could also look if this is inline json, but it make no sense.
+            _filePath = filePath; // Could also look if this is inline xml, but it make no sense.
             _data = data;
         }
 

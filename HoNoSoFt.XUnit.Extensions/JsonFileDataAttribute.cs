@@ -51,7 +51,7 @@ namespace HoNoSoFt.XUnit.Extensions
                     ? _filePath
                     : Directory.GetCurrentDirectory() + "/" + _filePath;
                 // Original code (Core 2.1, can't work in Standard2.0, maybe when 2.1 arrives) :(
-                //: Path.GetRelativePath(Directory.GetCurrentDirectory(), _filePath);
+                ////: Path.GetRelativePath(Directory.GetCurrentDirectory(), _filePath);
 
                 fileData = LoadFile(path);
             }
